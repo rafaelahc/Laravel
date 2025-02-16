@@ -1,10 +1,9 @@
 @extends('layouts.fe_layout')
 @section('content')
 
-
-<p>Name: {{$ourTasks -> name}}</p>
-<p>Tarefa: {{$ourTasks -> description}}</p>
-<p>Status: {{$ourTasks -> status}}</p>
-<p>Responsável: {{$ourTasks -> user_name}}</p>
+<h2>Detalhes da tarefa: </h2>
+<p><b>Nome:</b> {{$ourTasks -> name}}</p>
+<p><b>Descrição da tarefa:</b> {{$ourTasks -> description}}</p>
+<p><b>Responsável pela tarefa:</b> {{$ourTasks -> user_name}}</p>
 
 @endsection

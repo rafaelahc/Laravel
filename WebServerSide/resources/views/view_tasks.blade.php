@@ -24,9 +24,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Descrição</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Id usuário (FK)</th>
-                <th scope="col">Data Conclusão </th>
+                <th scope="col">Data Limite </th>
                 <th scope="col">Nome do responsável da tarefa</th>
                 <th scope="col">Ver dados</th>
                 <th scope="col">Apagar tarefa</th>
@@ -38,8 +36,6 @@
                     <th scope="row">{{ $task->id }}</th>
                     <td>{{ $task->name }}</td>
                     <td>{{ $task->description }}</td>
-                    <td>{{ $task->status }}</td>
-                    <td>{{ $task->user_id }}</td>
                     <td>{{ $task->due_at }}</td>
                     <td>{{ $task->user_name }}</td>
                     <td><a href="{{ route('task.view', $task->id) }}"class="btn btn-info">Ver</a></td>

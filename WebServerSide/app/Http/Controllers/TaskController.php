@@ -10,13 +10,20 @@ use Illuminate\Support\Facades\DB;
 class TaskController extends Controller
 {
 
+    private function getUsersFromDb() {
+        $users = DB::table('users')
+        ->get();
+        return $users;
+    }
+
     public function returnView() {
         $tasksList = $this->tasksList();
         $availableTasks = $this-> tasksAvaliable();
         $tasksFromDB = $this-> getAllTasks();
+        $users = $this->getUsersFromDb();
 
 
-        return view('view_tasks', compact('tasksList', 'availableTasks', 'tasksFromDB'));
+        return view('view_tasks', compact('tasksList', 'availableTasks', 'tasksFromDB', 'users'));
     }
 
     public function tasksList() {
@@ -85,22 +92,25 @@ class TaskController extends Controller
     }
 
     public function addNewTask() {
-        return view('addTask');
-    }
+        $users = $this->getUsersFromDb();
+        return view('addTask', compact('users'));
 
+
+    }
 
     public function createTasks(Request $request) {
         $request->validate([
             'user_id'=>'required',
             'name'=>'required|string|max:50',
             'description'=>'required|string',
-
         ]);
 
 
         Task::insert([
+            'user_id' => $request->user_id,
             'name' => $request->name,
             'description' => $request->description,
+            'due_at' => $request->date
         ]);
 
         return redirect()->route('task')->with('message', 'Tarefa adicionada com sucesso!');

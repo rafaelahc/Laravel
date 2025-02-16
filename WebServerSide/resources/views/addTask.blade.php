@@ -6,6 +6,19 @@
         @csrf {{-- Validação --}}
 
         <div class="mb-3">
+            <label for="userSelect" class="form-label">Usuário:</label>
+            <select required name="user_id" class="form-control" id="userSelect">
+                <option value="">Selecione um usuário</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+            </select>
+            @error('user_id')
+                selecione um usuário válido
+            @enderror
+        </div>
+
+        <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nome da tarefa: </label>
             <input required type="text" name="name" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp">
@@ -21,16 +34,13 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Id: </label>
-            <select required name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <option value="">1</option>
-            </select>
-
-
-                @error('name')
-                preencha um nome válido
+            <label for="exampleInputTaskDescription1" class="form-label">Data limite: </label>
+            <input required type="date" name="date" class="form-control" id="exampleInputTaskDescription1">
+            @error('email')
+                preencha algo válido
             @enderror
         </div>
+
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
